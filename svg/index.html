@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <title>Document</title>
+    <style>
+        .DivGlobal {
+            position: relative;
+            top: 150px;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            /* transform: rotate(45deg); */
+            text-align: center;
+            line-height: 3em;
+            /* border: 1px solid #a58c8c; */
+        }
+        .DivGlobal>div {
+            width: 50px;
+            box-sizing: border-box;
+            border: 1px solid rgb(199, 146, 146);
+            height: 50px;
+            float: left;
+        }
+        .DivGlobal>div:nth-child(1) {
+            background: white;
+            color: black;
+            border-radius: 80px 0 0;
+        }
+        .DivGlobal>div:nth-child(2){
+            background: white;
+            color: black;
+            border-radius: 0  80px 0 0 ;
+        }
+        .DivGlobal>div:nth-child(3){
+            background: white;
+            color: black;
+            border-radius: 0 0 0 80px ;
+        }
+        .DivGlobal>div:nth-child(4){
+            background: white;
+            color: black;
+            border-radius: 0  0 80px  0;
+        }
+    </style>
+</head>
+<body>
+    <div class="DivGlobal">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </div>
+
+</body>
+<script>
+  
+    $('.DivGlobal>div').hover((data) => {
+        var id=data.originalEvent.path[0].innerText;
+        
+        $('.DivGlobal>div:nth-child('+id+')').css({ "background": "black","color":"white" })
+    },function(data){
+        var id=data.originalEvent.path[0].innerText;
+
+        console.log(id);
+        
+        $('.DivGlobal>div:nth-child('+id+')').css({ "background": "white","color":"black" })
+
+                
+    })
+    $('.DivGlobal>div').click((data) => {
+        var id=data.originalEvent.path[0].innerText;
+        $('.DivGlobal>div:nth-child('+id+')').css({ "background": "green","color":"black" })
+        $('.DivGlobal>div:nth-child('+id+')').unbind("hover");
+        // $('.DivGlobal>div:nth-child(' + data.currentTarget.id+')').css({ "background": "red" })
+    })
+</script>
+
+</html>
